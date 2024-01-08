@@ -1,14 +1,13 @@
 import HeroSection from "./components/HeroSection";
 import Navbar from "./components/Navbar";
+import Portfolio from "./components/Portfolio";
 
 const App = () => {
   return (
     <div>
       <Navbar />
       <HeroSection />
-      <section id="portfolio" className="h-screen bg-red-300">
-        <h2 className="text-center">Portfolio Section</h2>
-      </section>
+      <Portfolio />
       <section id="skills" className="h-screen bg-blue-300">
         <h2 className="text-center">Skills Section</h2>
       </section>

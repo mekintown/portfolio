@@ -3,13 +3,15 @@ import { HiCloud } from "react-icons/hi";
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("");
+  const [navbarBlack, setNavbarBlack] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["portfolio", "skills", "contact"];
+      const sections = ["hero-section", "portfolio", "skills", "contact"];
       const scrollPosition = window.scrollY;
 
       let selectedSection = "";
+      let isHeroSectionActive = true;
       sections.forEach((section) => {
         const element = document.getElementById(section);
         if (element) {
@@ -20,11 +22,15 @@ const Navbar = () => {
             scrollPosition < offsetTop + offsetHeight
           ) {
             selectedSection = section;
+            if (section !== "hero-section") {
+              isHeroSectionActive = false;
+            }
           }
         }
       });
 
       setActiveSection(selectedSection);
+      setNavbarBlack(!isHeroSectionActive);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -38,7 +44,11 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-gray-50 dark:bg-gray-800 p-4 text-gray-900 dark:text-white sticky  top-0">
+    <nav
+      className={`sticky top-0 z-50 w-screen p-4 ${
+        navbarBlack ? "bg-neutral-900" : "bg-transparent"
+      } text-gray-900 dark:text-white ease-in-out`}
+    >
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <HiCloud className="h-8 w-8 mr-2" />
